@@ -107,6 +107,12 @@
     <None Include="keywords.txt">
       <SubType>compile</SubType>
     </None>
+    <None Include="license.md">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="readme.md">
+      <SubType>compile</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="utility" />
