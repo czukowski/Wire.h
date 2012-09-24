@@ -24,10 +24,11 @@
 
 #include <inttypes.h>
 #include "Stream.h"
+#include "IWire.h"
 
 #define BUFFER_LENGTH 32
 
-class TwoWire : public Stream
+class TwoWire : public Stream, public IWire
 {
   private:
     static uint8_t rxBuffer[];
@@ -62,10 +63,10 @@ class TwoWire : public Stream
     virtual int available(void);
     virtual int read(void);
     virtual int peek(void);
-	virtual void flush(void);
+    virtual void flush(void);
     void onReceive( void (*)(int) );
     void onRequest( void (*)(void) );
-  
+
     inline size_t write(unsigned long n) { return write((uint8_t)n); }
     inline size_t write(long n) { return write((uint8_t)n); }
     inline size_t write(unsigned int n) { return write((uint8_t)n); }
