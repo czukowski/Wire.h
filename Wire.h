@@ -74,7 +74,5 @@ class TwoWire : public Stream, public IWire
     using Print::write;
 };
 
-extern TwoWire Wire;
-
 #endif
 
