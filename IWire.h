@@ -43,8 +43,8 @@ class IWire
 		virtual int read(void) = 0;
 		virtual int peek(void) = 0;
 		virtual void flush(void) = 0;
-		virtual void onReceive( void (*)(int) ) = 0;
-		virtual void onRequest( void (*)(void) ) = 0;
+		// virtual void onReceive( void (*)(int) ) = 0;
+		// virtual void onRequest( void (*)(void) ) = 0;
 };
 
 #endif /* WIRE_INTERFACE_H_ */
