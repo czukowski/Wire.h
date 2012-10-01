@@ -16,13 +16,6 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
-extern "C" {
-	#include <stdlib.h>
-	#include <string.h>
-	#include <inttypes.h>
-}
-
 #include "IWire.h"
 #include "TwoWire.h"
 #include "MockWire.h"
@@ -170,12 +163,4 @@ void MockWire::addWrittenData(const uint8_t *data, size_t quantity)
 		writtenData[writtenQuantity + i] = data[i];
 		writtenQuantity++;
 	}
-}
-
-// Constructor
-MockWire::MockWire()
-{
-	methodCallsIndex = 0;
-	rxBufferIndex = 0;
-	rxBufferLength = 0;
 }

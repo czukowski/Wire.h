@@ -25,7 +25,6 @@
 class IWire
 {
 	public:
-		virtual ~IWire() {};
 		virtual void begin() = 0;
 		virtual void begin(uint8_t) = 0;
 		virtual void begin(int) = 0;

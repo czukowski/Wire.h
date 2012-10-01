@@ -20,12 +20,13 @@
 #ifndef MockWire_H_
 #define MockWire_H_
 
-#include <inttypes.h>
+#include "IWire.h"
+#include "TwoWire.h"
 
 class MockWire : public IWire
 {
 	private:
-		uint8_t rxBuffer[];
+		uint8_t rxBuffer[BUFFER_LENGTH];
 		uint8_t rxBufferIndex;
 		uint8_t rxBufferLength;
 		void addMethodCall(const char *);
@@ -43,9 +44,8 @@ class MockWire : public IWire
 		uint8_t endTransmissionSentStop;
 		uint8_t * writtenData;
 		uint8_t writtenQuantity;
-		// Constructor/destructor
-		MockWire();
-		virtual ~MockWire() {};
+		// Constructor
+		MockWire() {};
 		// Mocked methods
 		void begin();
 		void begin(uint8_t);
@@ -58,12 +58,12 @@ class MockWire : public IWire
 		uint8_t requestFrom(uint8_t, uint8_t, uint8_t);
 		uint8_t requestFrom(int, int);
 		uint8_t requestFrom(int, int, int);
-		virtual size_t write(uint8_t);
-		virtual size_t write(const uint8_t *, size_t);
-		virtual int available(void);
-		virtual int read(void);
-		virtual int peek(void);
-		virtual void flush(void);
+		size_t write(uint8_t);
+		size_t write(const uint8_t *, size_t);
+		int available(void);
+		int read(void);
+		int peek(void);
+		void flush(void);
 		void onReceive( void (*)(int) );
 		void onRequest( void (*)(void) );
 };
