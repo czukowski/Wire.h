@@ -18,5 +18,5 @@ because that is those files' class name.
 
 I'm trying to test these using the [embUnit](https://github.com/czukowski/embUnit) testing framework
 ([original here](http://embunit.sourceforge.net/embunit/index.html)). There are no tests here yet, I've
-just seem to have managed to wire it together. Still haven't figured how to run the tests effectively
-- ie. get any output - on the AS6's AVR Simulator.
+just seem to have managed to wire it together. Still haven't figured how to run the tests effectively - ie. 
+get any output - on the AS6's AVR Simulator.
