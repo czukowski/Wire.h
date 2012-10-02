@@ -140,8 +140,19 @@ void MockWire::flush(void)
 	addMethodCall("flush");
 }
 
-// Public helper methods
-
+// Initialize the properties in constructor
+MockWire::MockWire()
+{
+	methodCallsIndex = 0;
+	initializedAddress = 0;
+	transmitAddress = 0;
+	transmitting = 0;
+	requestedFromAddress = 0;
+	requestedFromQuantity = 0;
+	requestedFromSentStop = 0;
+	endTransmissionSentStop = 0;
+	writtenQuantity = 0;
+}
 
 // Private helper methods
 void MockWire::addMethodCall(const char *methodName)

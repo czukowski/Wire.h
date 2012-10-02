@@ -23,7 +23,7 @@
 #include "IWire.h"
 #include "TwoWire.h"
 
-class MockWire : public IWire
+class MockWire : virtual public IWire
 {
 	private:
 		uint8_t rxBuffer[BUFFER_LENGTH];
@@ -42,10 +42,10 @@ class MockWire : public IWire
 		uint8_t requestedFromQuantity;
 		uint8_t requestedFromSentStop;
 		uint8_t endTransmissionSentStop;
-		uint8_t * writtenData;
+		uint8_t *writtenData;
 		uint8_t writtenQuantity;
 		// Constructor
-		MockWire() {};
+		MockWire();
 		// Mocked methods
 		void begin();
 		void begin(uint8_t);
