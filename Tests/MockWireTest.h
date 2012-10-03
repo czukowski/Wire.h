@@ -1,5 +1,5 @@
 /*
-  MockWireTest.cpp
+  MockWireTest.h
   Copyright (c) 2012 Korney Czukowski
 
   This library is free software; you can redistribute it and/or
@@ -16,34 +16,32 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-#include <embUnit/embUnit.h>
-#include <MockWire.h>
-#include "MockWireTest.h"
+#ifndef MOCKWIRETEST_H_
+#define MOCKWIRETEST_H_
 
-TestRef MockWireTest_tests()
-{
-	EMB_UNIT_TESTFIXTURES(fixtures) {
-		new_TestFixture( (char*) "testBeginVoid", testBeginVoid),
-		new_TestFixture( (char*) "testBeginUint8", testBeginUint8),
-		new_TestFixture( (char*) "testBeginInt", testBeginInt),
-	};
-	EMB_UNIT_TESTCALLER(MockWireTest, (char*) "MockWireTest", setUp, tearDown, fixtures);
+// Assert macros
+#define TEST_ASSERT_WIRE_BEGIN(expectedAddress, actualObject)\
+	TEST_ASSERT_EQUAL_INT(expectedAddress, actualObject.initializedAddress);\
+	TEST_ASSERT_EQUAL_STRING("begin", actualObject.methodCalls);
 
-	return (TestRef) &MockWireTest;
-}
+// Test object instance
+extern MockWire object;
 
-void testBeginVoid()
-{
-	object.begin();
-	TEST_ASSERT_WIRE_BEGIN(0, object);
-}
-void testBeginUint8()
-{
-	object.begin( (uint8_t) 26);
-	TEST_ASSERT_WIRE_BEGIN( (uint8_t) 26, object);
-}
-void testBeginInt()
-{
-	object.begin( (int) 88);
-	TEST_ASSERT_WIRE_BEGIN( (int) 88, object);
-}
+// Set up & tear down functions
+extern void setUp();
+extern void tearDown();
+
+// External 'get argument' functions
+extern MockWire mockWireObjectFactory();
+extern int getIntArgument();
+extern uint8_t getUint8Argument();
+
+// test functions
+void testBeginVoid();
+void testBeginUint8();
+void testBeginInt();
+
+// test suite initialization
+TestRef MockWireTest_tests();
+
+#endif /* MOCKWIRETEST_H_ */
