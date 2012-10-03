@@ -23,6 +23,10 @@
 #define TEST_ASSERT_WIRE_BEGIN(expectedAddress, actualObject)\
 	TEST_ASSERT_EQUAL_INT(expectedAddress, actualObject.initializedAddress);\
 	TEST_ASSERT_EQUAL_STRING("begin", actualObject.methodCalls);
+#define TEST_ASSERT_WIRE_BEGIN_TRANSMISSION(expectedAddress, actualObject)\
+	TEST_ASSERT_EQUAL_INT(expectedAddress, actualObject.transmitAddress);\
+	TEST_ASSERT_EQUAL_INT(1, actualObject.transmitting);\
+	TEST_ASSERT_EQUAL_STRING("beginTransmission", actualObject.methodCalls);
 
 // Test object instance
 extern MockWire object;
@@ -40,6 +44,8 @@ extern uint8_t getUint8Argument();
 void testBeginVoid();
 void testBeginUint8();
 void testBeginInt();
+void testBeginTransmissionUint8();
+void testBeginTransmissionInt();
 
 // test suite initialization
 TestRef MockWireTest_tests();
