@@ -30,6 +30,11 @@ TestRef MockWireTest_tests()
 		new_TestFixture( (char*) "testBeginTransmissionInt", testBeginTransmissionInt),
 		new_TestFixture( (char*) "testEndTransmissionVoid", testEndTransmissionVoid),
 		new_TestFixture( (char*) "testEndTransmissionUint8", testEndTransmissionUint8),
+		new_TestFixture( (char*) "testRequestFromUintThreeParams", testRequestFromUintThreeParams),
+		new_TestFixture( (char*) "testRequestFromUintTwoParams", testRequestFromUintTwoParams),
+		new_TestFixture( (char*) "testRequestFromIntThreeParams", testRequestFromIntThreeParams),
+		new_TestFixture( (char*) "testRequestFromIntTwoParams", testRequestFromIntTwoParams),
+		new_TestFixture( (char*) "testRequestFromTooMuch", testRequestFromTooMuch),
 	};
 	EMB_UNIT_TESTCALLER(MockWireTest, (char*) "MockWireTest", setUp, tearDown, fixtures);
 
@@ -70,4 +75,29 @@ void testEndTransmissionUint8()
 {
 	object.endTransmission(false);
 	TEST_ASSERT_WIRE_END_TRANSMISSION(false, object);
+}
+void testRequestFromUintThreeParams()
+{
+	object.requestFrom( (uint8_t) 32, (uint8_t) 8, (uint8_t) false);
+	TEST_ASSERT_WIRE_REQUEST_FROM(32, 8, false, object);
+}
+void testRequestFromUintTwoParams()
+{
+	object.requestFrom( (uint8_t) 33, (uint8_t) 18);
+	TEST_ASSERT_WIRE_REQUEST_FROM(33, 18, true, object);
+}
+void testRequestFromIntThreeParams()
+{
+	object.requestFrom( (int) 12, (int) 12, (int) true);
+	TEST_ASSERT_WIRE_REQUEST_FROM(12, 12, true, object);
+}
+void testRequestFromIntTwoParams()
+{
+	object.requestFrom( (int) 64, (int) 9);
+	TEST_ASSERT_WIRE_REQUEST_FROM(64, 9, true, object);
+}
+void testRequestFromTooMuch()
+{
+	object.requestFrom( (int) 38, (int) BUFFER_LENGTH + 1);
+	TEST_ASSERT_WIRE_REQUEST_FROM(38, BUFFER_LENGTH, true, object);	
 }

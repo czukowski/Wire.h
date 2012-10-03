@@ -33,6 +33,11 @@
 	TEST_ASSERT_EQUAL_INT(expectedSendStop, actualObject.endTransmissionSentStop);\
 	TEST_ASSERT_EQUAL_INT(0, actualObject.transmitting);\
 	TEST_ASSERT(actualObject.methodCalls.equals("endTransmission"));
+#define TEST_ASSERT_WIRE_REQUEST_FROM(expectedAddress, expectedQuantity, expectedSendStop, actualObject)\
+	TEST_ASSERT_EQUAL_INT(expectedAddress, actualObject.requestedFromAddress);\
+	TEST_ASSERT_EQUAL_INT(expectedQuantity, actualObject.requestedFromQuantity);\
+	TEST_ASSERT_EQUAL_INT(expectedSendStop, actualObject.requestedFromSentStop);\
+	TEST_ASSERT(actualObject.methodCalls.equals("requestFrom"));
 
 // Test object instance
 extern MockWire object;
@@ -54,6 +59,11 @@ void testBeginTransmissionUint8();
 void testBeginTransmissionInt();
 void testEndTransmissionVoid();
 void testEndTransmissionUint8();
+void testRequestFromUintThreeParams();
+void testRequestFromUintTwoParams();
+void testRequestFromIntThreeParams();
+void testRequestFromIntTwoParams();
+void testRequestFromTooMuch();
 
 // test suite initialization
 TestRef MockWireTest_tests();
