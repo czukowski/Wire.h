@@ -20,6 +20,7 @@
 #ifndef MockWire_H_
 #define MockWire_H_
 
+#include <Arduino.h>
 #include "IWire.h"
 #include "TwoWire.h"
 
@@ -33,7 +34,7 @@ class MockWire : virtual public IWire
 		void addWrittenData(const uint8_t *, size_t);
 	public:
 		// Public properties with 'actual' values
-		char *methodCalls;
+		String methodCalls;
 		uint8_t methodCallsIndex;
 		uint8_t initializedAddress;
 		uint8_t transmitAddress;

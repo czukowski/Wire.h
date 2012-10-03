@@ -143,6 +143,7 @@ void MockWire::flush(void)
 // Initialize the properties in constructor
 MockWire::MockWire()
 {
+	methodCalls = String();
 	methodCallsIndex = 0;
 	initializedAddress = 0;
 	transmitAddress = 0;
@@ -157,15 +158,13 @@ MockWire::MockWire()
 // Private helper methods
 void MockWire::addMethodCall(const char *methodName)
 {
-	int length = strlen(methodName);
 	if (methodCallsIndex > 0)
 	{
-		methodCalls[methodCallsIndex++] = ',';
+		methodCallsIndex++;
+		methodCalls += ',';
 	}
-	for (int i = 0; i < length; i++)
-	{
-		methodCalls[methodCallsIndex++] = methodName[i];
-	}
+	methodCalls += methodName;
+	methodCallsIndex += strlen(methodName);
 }
 void MockWire::addWrittenData(const uint8_t *data, size_t quantity)
 {

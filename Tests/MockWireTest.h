@@ -19,14 +19,20 @@
 #ifndef MOCKWIRETEST_H_
 #define MOCKWIRETEST_H_
 
+#include <WString.h>
+
 // Assert macros
 #define TEST_ASSERT_WIRE_BEGIN(expectedAddress, actualObject)\
 	TEST_ASSERT_EQUAL_INT(expectedAddress, actualObject.initializedAddress);\
-	TEST_ASSERT_EQUAL_STRING("begin", actualObject.methodCalls);
+	TEST_ASSERT(actualObject.methodCalls.equals("begin"));
 #define TEST_ASSERT_WIRE_BEGIN_TRANSMISSION(expectedAddress, actualObject)\
 	TEST_ASSERT_EQUAL_INT(expectedAddress, actualObject.transmitAddress);\
 	TEST_ASSERT_EQUAL_INT(1, actualObject.transmitting);\
-	TEST_ASSERT_EQUAL_STRING("beginTransmission", actualObject.methodCalls);
+	TEST_ASSERT(actualObject.methodCalls.equals("beginTransmission"));
+#define TEST_ASSERT_WIRE_END_TRANSMISSION(expectedSendStop, actualObject)\
+	TEST_ASSERT_EQUAL_INT(expectedSendStop, actualObject.endTransmissionSentStop);\
+	TEST_ASSERT_EQUAL_INT(0, actualObject.transmitting);\
+	TEST_ASSERT(actualObject.methodCalls.equals("endTransmission"));
 
 // Test object instance
 extern MockWire object;
@@ -46,6 +52,8 @@ void testBeginUint8();
 void testBeginInt();
 void testBeginTransmissionUint8();
 void testBeginTransmissionInt();
+void testEndTransmissionVoid();
+void testEndTransmissionUint8();
 
 // test suite initialization
 TestRef MockWireTest_tests();

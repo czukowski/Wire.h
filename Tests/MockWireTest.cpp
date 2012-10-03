@@ -28,6 +28,8 @@ TestRef MockWireTest_tests()
 		new_TestFixture( (char*) "testBeginInt", testBeginInt),
 		new_TestFixture( (char*) "testBeginTransmissionUint8", testBeginTransmissionUint8),
 		new_TestFixture( (char*) "testBeginTransmissionInt", testBeginTransmissionInt),
+		new_TestFixture( (char*) "testEndTransmissionVoid", testEndTransmissionVoid),
+		new_TestFixture( (char*) "testEndTransmissionUint8", testEndTransmissionUint8),
 	};
 	EMB_UNIT_TESTCALLER(MockWireTest, (char*) "MockWireTest", setUp, tearDown, fixtures);
 
@@ -58,4 +60,14 @@ void testBeginTransmissionInt()
 {
 	object.beginTransmission( (int) 36);
 	TEST_ASSERT_WIRE_BEGIN_TRANSMISSION( (int) 36, object);
+}
+void testEndTransmissionVoid()
+{
+	object.endTransmission();
+	TEST_ASSERT_WIRE_END_TRANSMISSION(true, object);
+}
+void testEndTransmissionUint8()
+{
+	object.endTransmission(false);
+	TEST_ASSERT_WIRE_END_TRANSMISSION(false, object);
 }
