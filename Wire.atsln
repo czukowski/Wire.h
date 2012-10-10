@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Atmel Studio Solution File, Format Version 11.00
 Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Wire", "Wire\Wire.cppproj", "{299BB44C-8DCE-4E05-8360-44E0DB226D4B}"
 EndProject
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "WireMock", "WireMock\WireMock.cppproj", "{1832AF3A-25D2-414F-B27F-A004A95360E7}"
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "MockWire", "MockWire\MockWire.cppproj", "{1832AF3A-25D2-414F-B27F-A004A95360E7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{299BB44C-8DCE-4E05-8360-44E0DB226D4B} = {299BB44C-8DCE-4E05-8360-44E0DB226D4B}
 	EndProjectSection

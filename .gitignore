@@ -1,7 +1,7 @@
 Wire/Debug/
 Wire/Release/
-WireMock/Debug/
-WireMock/Release/
+MockWire/Debug/
+MockWire/Release/
 Tests/Debug/
 Tests/Release/
 Wire.atsuo
