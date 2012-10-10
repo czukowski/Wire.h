@@ -30,11 +30,11 @@ class MockWire : virtual public IWire
 		uint8_t rxBuffer[BUFFER_LENGTH];
 		uint8_t rxBufferIndex;
 		uint8_t rxBufferLength;
-		void addMethodCall(const char *);
-		void addWrittenData(const uint8_t *, size_t);
+		void addMethodCall(const char *methodName);
+		void append(char *buffer, uint8_t& cursor, const char *data, int length);
 	public:
 		// Public properties with 'actual' values
-		String methodCalls;
+		char methodCalls[BUFFER_LENGTH + 1];
 		uint8_t methodCallsIndex;
 		uint8_t initializedAddress;
 		uint8_t transmitAddress;
@@ -43,7 +43,7 @@ class MockWire : virtual public IWire
 		uint8_t requestedFromQuantity;
 		uint8_t requestedFromSentStop;
 		uint8_t endTransmissionSentStop;
-		uint8_t *writtenData;
+		char writtenData[BUFFER_LENGTH + 1];
 		uint8_t writtenQuantity;
 		// Constructor
 		MockWire();

@@ -93,7 +93,7 @@ size_t MockWire::write(const uint8_t *data, size_t quantity)
 	if (transmitting)
 	{
 		addMethodCall("write");
-		addWrittenData(data, quantity);
+		appendBuffer(writtenData, writtenQuantity, (const char *) data, quantity);
 	}
 	return quantity;
 }
@@ -143,7 +143,6 @@ void MockWire::flush(void)
 // Initialize the properties in constructor
 MockWire::MockWire()
 {
-	methodCalls = String();
 	methodCallsIndex = 0;
 	initializedAddress = 0;
 	transmitAddress = 0;
@@ -158,19 +157,20 @@ MockWire::MockWire()
 // Private helper methods
 void MockWire::addMethodCall(const char *methodName)
 {
+	uint8_t length = strlen(methodName);
 	if (methodCallsIndex > 0)
 	{
-		methodCallsIndex++;
-		methodCalls += ',';
+		append(methodCalls, methodCallsIndex, ",", 1);
 	}
-	methodCalls += methodName;
-	methodCallsIndex += strlen(methodName);
+	append(methodCalls, methodCallsIndex, methodName, strlen(methodName));
 }
-void MockWire::addWrittenData(const uint8_t *data, size_t quantity)
+void MockWire::append(char *buffer, uint8_t& cursor, const char *data, int length)
 {
-	for (size_t i = 0; i < quantity; i++)
+	char *p = buffer;
+	for (int i = 0; i < length; i++)
 	{
-		writtenData[writtenQuantity + i] = data[i];
-		writtenQuantity++;
+		*p++ = *data++;
+		cursor++;
 	}
-}
+	*p = 0;
+};
