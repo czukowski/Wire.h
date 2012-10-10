@@ -157,7 +157,6 @@ MockWire::MockWire()
 // Private helper methods
 void MockWire::addMethodCall(const char *methodName)
 {
-	uint8_t length = strlen(methodName);
 	if (methodCallsIndex > 0)
 	{
 		append(methodCalls, methodCallsIndex, ",", 1);
