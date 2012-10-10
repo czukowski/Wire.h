@@ -46,4 +46,8 @@
 	assertEquals(expectedData, actualObject.writtenData);\
 	assertEquals("write", actualObject.methodCalls);
 
+#define assertWireAvailable(expectedValue, actualValue, actualObject)\
+	assertEquals(expectedValue, actualValue);\
+	assertEquals("available", actualObject.methodCalls);
+
 #endif /* MOCKWIREASSERT_H_ */

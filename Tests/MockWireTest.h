@@ -110,5 +110,18 @@ test(writeMultiple)
 	suite.object.write( (const uint8_t *) "123456", length);
 	assertWireWrite(expectedData, length, suite.object);
 }
+// Test 'available' method without doing anything else
+test(availableVoid)
+{
+	int actual = suite.object.available();
+	assertWireAvailable(0, actual, suite.object);
+}
+// Test 'available' method with some data in the buffer
+test(availableWithData)
+{
+	suite.object.addToRxBuffer("12345");
+	int actual = suite.object.available();
+	assertWireAvailable(5, actual, suite.object);
+}
 
 #endif /* MOCKWIRETEST_H_ */
