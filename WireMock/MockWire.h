@@ -27,9 +27,6 @@
 class MockWire : virtual public IWire
 {
 	private:
-		uint8_t rxBuffer[BUFFER_LENGTH];
-		uint8_t rxBufferIndex;
-		uint8_t rxBufferLength;
 		void addMethodCall(const char *methodName);
 		void append(char *buffer, uint8_t& cursor, const char *data, int length);
 	public:
@@ -45,6 +42,9 @@ class MockWire : virtual public IWire
 		uint8_t endTransmissionSentStop;
 		char writtenData[BUFFER_LENGTH + 1];
 		uint8_t writtenQuantity;
+		uint8_t rxBuffer[BUFFER_LENGTH];
+		uint8_t rxBufferIndex;
+		uint8_t rxBufferLength;
 		// Constructor
 		MockWire();
 		// Mocked methods
