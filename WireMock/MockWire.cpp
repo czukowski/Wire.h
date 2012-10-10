@@ -93,7 +93,7 @@ size_t MockWire::write(const uint8_t *data, size_t quantity)
 	if (transmitting)
 	{
 		addMethodCall("write");
-		appendBuffer(writtenData, writtenQuantity, (const char *) data, quantity);
+		append(writtenData, writtenQuantity, (const char *) data, quantity);
 	}
 	return quantity;
 }
