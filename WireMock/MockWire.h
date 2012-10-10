@@ -42,7 +42,7 @@ class MockWire : virtual public IWire
 		uint8_t endTransmissionSentStop;
 		char writtenData[BUFFER_LENGTH + 1];
 		uint8_t writtenQuantity;
-		uint8_t rxBuffer[BUFFER_LENGTH];
+		char rxBuffer[BUFFER_LENGTH];
 		uint8_t rxBufferIndex;
 		uint8_t rxBufferLength;
 		// Constructor
@@ -67,6 +67,8 @@ class MockWire : virtual public IWire
 		void flush(void);
 		void onReceive( void (*)(int) );
 		void onRequest( void (*)(void) );
+		// Additional helper methods
+		void addToRxBuffer(const char *);
 };
 
 #endif /* MockWire_H_ */

@@ -154,7 +154,7 @@ MockWire::MockWire()
 	writtenQuantity = 0;
 }
 
-// Private helper methods
+// Helper methods
 void MockWire::addMethodCall(const char *methodName)
 {
 	if (methodCallsIndex > 0)
@@ -162,6 +162,10 @@ void MockWire::addMethodCall(const char *methodName)
 		append(methodCalls, methodCallsIndex, ",", 1);
 	}
 	append(methodCalls, methodCallsIndex, methodName, strlen(methodName));
+}
+void MockWire::addToRxBuffer(const char *data)
+{
+	append(rxBuffer, rxBufferLength, data, strlen(data));
 }
 void MockWire::append(char *buffer, uint8_t& cursor, const char *data, int length)
 {
